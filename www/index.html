@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="accesspal">
+<head>
+    <!-- do not remove content security policy meta tag!! -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; media-src *; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/font_awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/ionicons/css/ionicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/material-design-iconic-font/css/material-design-iconic-font.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/onsenui.css"/>
+    <link rel="stylesheet" href="css/onsen-css-components.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="css/leaflet.css"/>
+    <link rel="stylesheet" type="text/css" href="css/leaflet-vector-markers.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+    <script type="text/javascript" src="js/lib/onsenui.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular-onsenui.min.js"></script>
+
+    <title>accessPal</title>
+</head>
+<body>
+<ons-splitter var="menu" ng-controller="menuController as menuctrl">
+    <ons-splitter-side
+            side="left"
+            width="220px"
+            collapse="portrait"
+            page="menu.html">
+    </ons-splitter-side>
+    <ons-splitter-content>
+        <ons-navigator var="accessPal.Nav" page="templates/mapTpl/mapTpl.html"></ons-navigator>
+    </ons-splitter-content>
+</ons-splitter>
+
+<ons-template id="menu.html">
+    <ons-toolbar>
+        <div class="center">Επιλογές</div>
+    </ons-toolbar>
+    <ons-page>
+        <ons-list>
+            <ons-list-item tappable ng-click="menuctrl.akropolDest()">Προς Ακρόπολη</ons-list-item>
+            <ons-list-item tappable ng-click="menuctrl.diasDest()">Προς Ολυμπείο</ons-list-item>
+            <ons-list-item tappable ng-click="menuctrl.load('templates/mapTpl/mapTpl.html')">
+                <div class="center">Χάρτης</div>
+            </ons-list-item>
+            <ons-list-item tappable ng-click="menuctrl.load('templates/settingsTpl/settingsTpl.html')">
+                <div class="center">Ρυθμίσεις</div>
+            </ons-list-item>
+        </ons-list>
+
+    </ons-page>
+</ons-template>
+
+<script type="text/javascript" src="js/lib/leaflet.js"></script>
+<script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="js/lib/angular-leaflet-directive.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="js/lib/leaflet-vector-markers.min.js"></script>
+
+<!-- Controllers -->
+<script src="js/menuController.js"></script>
+<script src="templates/mapTpl/mapCtrl.js"></script>
+<script type="text/javascript" src="js/mapService.js"></script>
+<script type="text/javascript" src="js/fsqService.js"></script>
+</body>
+</html>

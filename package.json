@@ -1,0 +1,17 @@
+{
+    "name": "gr.accesspal.team",
+    "version": "1.0.0",
+    "displayName": "accesspal",
+    "cordova": {
+        "platforms": [
+            "android"
+        ],
+        "plugins": {
+            "cordova-plugin-tts": {},
+            "cordova-plugin-whitelist": {}
+        }
+    },
+    "dependencies": {
+        "cordova-android": "~6.2.2"
+    }
+}
