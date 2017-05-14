@@ -6,6 +6,8 @@ const int pinLedG = 13; //green
 const int pinLedR = 15; //red
 const int pinLedB = 14; //blue
 WiFiClient client;
+const char* ssid = "Smart City";
+char server[] = "http://122.173.212.219/";
 
 void setup() { 
   Serial.begin(115200);
@@ -15,9 +17,20 @@ void setup() {
   pinMode(pinLedR,OUTPUT); 
   pinMode(pinLedB,OUTPUT); 
   delay(10);
+  
+  WiFi.begin(ssid);
  }
 
 void loop() {
+  int obstacle = 0;
+  int rampID = 5023;
+  client.connect(server,80);
+  client.println("GET /sensor? HTTP/1.1");
+  
+  client.println("obstacle=");
+  client.print(obstacle);
+  client.println("&rampID=");
+  client.print(rampID);
   
   long duration, distance;
   digitalWrite(TRIGGER, LOW);  
@@ -36,13 +49,14 @@ void loop() {
   if(distance <10){
     digitalWrite(pinLedR, HIGH);
     digitalWrite(pinLedG, LOW);
-  }
-  else{
+  obstacle = 1;
+  }else{
     digitalWrite(pinLedR, LOW);
-    digitalWrite(pinLedG, HIGH); 
+    digitalWrite(pinLedG, HIGH);
+  obstacle = 0;
   }
 
-if(distance <10){
+if(obstacle > 0){
   digitalWrite(pinLedB, HIGH);
   delay(100);
   digitalWrite(pinLedB, LOW);
@@ -56,6 +70,6 @@ if(distance <10){
   digitalWrite(pinLedB, LOW);
 }
   
-
+  client.stop();
   delay(1000);
 }
